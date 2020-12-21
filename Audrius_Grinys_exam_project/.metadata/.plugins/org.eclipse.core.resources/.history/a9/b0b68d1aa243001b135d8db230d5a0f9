@@ -1,0 +1,26 @@
+package search.product;
+
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
+
+public class SearchProductByName {
+	@Test
+	public void clickOnMenuItem() {
+		driver.get("https://demo.opencart.com/");
+
+	}
+
+	@BeforeClass
+	public void beforeClass() {
+		  System.setProperty("webdriver.chrome.driver", "driver/chromedriver");
+		  driver = new ChromeDriver();
+		  driver.manage().window().maximize();
+	}
+
+	@AfterClass
+	public void afterClass() {
+	}
+
+}

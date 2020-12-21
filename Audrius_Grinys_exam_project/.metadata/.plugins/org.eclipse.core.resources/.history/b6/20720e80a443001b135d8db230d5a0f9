@@ -1,0 +1,11 @@
+iPod Classic
+iPod Namo
+iPod Touch
+iPod Silver
+MacBook Air
+
+
+
+List<String> tD = getTestData("src/test/resources/TestData.txt");
+
+driver.findElement(By.name("iPod Classic")).sendKeys(tD.get(0));

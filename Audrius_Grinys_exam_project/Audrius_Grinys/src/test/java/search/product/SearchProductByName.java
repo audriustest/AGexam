@@ -1,0 +1,97 @@
+package search.product;
+
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
+
+public class SearchProductByName {
+	WebDriver driver;
+	private final String URL = "https://demo.opencart.com/";
+
+	// read item names from TestData file
+	public static List<String> getTestData(String TestData) throws IOException {
+		List<String> items = new ArrayList<String>();
+		String item;
+
+		BufferedReader file = new BufferedReader(new FileReader(TestData));
+
+		while ((item = file.readLine()) != null) {
+			items.add(item);
+		}
+		file.close();
+		return items;
+
+	}
+	
+	@Test
+	public void openMp3PlayersPageInListView() {
+		driver.get(URL);
+		driver.findElement(By.linkText("MP3 Players")).click();
+		driver.findElement(By.cssSelector("ul > li.dropdown.open > div > a")).click();
+		driver.findElement(By.xpath("//*[@id=\"list-view\"]")).click();
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+		List<WebElement> listOfElements = driver.findElements(By.className("product-thumb"));
+		
+		
+		for (WebElement e: listOfElements) {
+			System.out.print(e.getTagName());
+		}
+
+		
+		driver.findElement(By.xpath("//*[@\"i\"=\"fa fa-heart\"]")).click();
+		
+
+	}
+	
+//	@Test
+//	public void getAllItemsFromPage() {
+//		driver.get(URL);
+//		List<WebElement> listOfElements = driver.findElements(By.className("product-thumb"));
+//		
+//		System.out.println(listOfElements);
+//		
+//
+//	}
+
+	
+	@Test
+//	public void checkIfItemNameExistsInPage() throws IOException {
+//		List<String> testDataItemName = getTestData("src/test/resources/TestData.txt");
+//		
+//		for(String item: testDataItemName ) {
+//			if()
+//			
+//			
+//		}
+		
+		
+//
+//	}
+//	
+	
+
+	@BeforeClass
+	public void beforeClass() {
+		System.setProperty("webdriver.chrome.driver", "driver/chromedriver");
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+	}
+
+	@AfterClass
+	public void afterClass() {
+//		driver.quit();
+	}
+
+}
